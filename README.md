@@ -1,4 +1,4 @@
-# ES6 React using jspm - Example
+# ES6 React
 
 > Apenas um show
 
