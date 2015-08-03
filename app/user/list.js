@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import ReactCSSTransitionGroup from 'react/lib/ReactCSSTransitionGroup';
 import User from './user';
 import UserModal from './modal';
 import {getUserList, getUser} from '../services';
@@ -24,7 +25,8 @@ class UserList extends React.Component {
   addNewUser() {
     getUser(Math.random() * 10).then((res) => {
       let users = this.state.users;
-      users.unshift(res.results[0]);
+      // users.unshift(res.results[0]);
+      users.push(res.results[0]);
       this.setState({
         users: users,
         open: false,
@@ -65,7 +67,12 @@ class UserList extends React.Component {
         <button onClick={() => this.addNewUser()}>Add user</button>
         <div className="list">
           <UserModal isOpen={this.state.open} user={this.state.current}>
-            {users}
+            <ReactCSSTransitionGroup
+              transitionName="userlist"
+              transitionAppear={true}
+            >
+              {users}
+            </ReactCSSTransitionGroup>
           </UserModal>
         </div>
       </div>

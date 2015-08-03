@@ -16,9 +16,9 @@ module.exports = function(grunt) {
         'options': {
           'compress': false,
           'paths': [
-              'node_modules/node_modules/nib',
-              'node_modules/jeet/stylus',
-              'node_modules/rupture'
+            'node_modules/node_modules/nib',
+            'node_modules/jeet/stylus',
+            'node_modules/rupture'
           ],
           'import': [
             'nib',
@@ -41,7 +41,9 @@ module.exports = function(grunt) {
       options: {
         map: true,
         processors: [
-          require('autoprefixer-core')({browsers: 'last 1 version'}),
+          require('autoprefixer-core')({
+            browsers: 'last 1 version'
+          }),
           require('csswring')
         ]
       },
@@ -80,6 +82,15 @@ module.exports = function(grunt) {
 
     clean: {
       tmp: ['<%= project.tmp %>']
+    },
+
+    shell: {
+      multiple: {
+        command: [
+          'make build',
+          'rsync dist/. lagden.in:/home/lagden/webapps/htdocs/es6-react --rsh ssh --recursive'
+        ].join(';')
+      }
     }
   });
 
@@ -97,5 +108,10 @@ module.exports = function(grunt) {
     'default',
     'browserSync',
     'watch'
+  ]);
+
+  grunt.registerTask('deploy', [
+    'default',
+    'shell'
   ]);
 };

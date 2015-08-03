@@ -39,5 +39,9 @@
     "rupture": "^0.6.1",
     "time-grunt": "^1.2.1",
     "uglifyjs": "^2.4.10"
+  },
+  "dependencies": {
+    "grunt-rsync": "^0.6.2",
+    "grunt-shell": "^1.1.2"
   }
 }

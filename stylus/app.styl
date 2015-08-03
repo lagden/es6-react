@@ -140,3 +140,23 @@ duration = 0.45s
   height 150px
   border-radius 50%
   margin-bottom 10px
+
+
+// Animation
+.userlist,
+.userlist-enter,
+.userlist-leave
+  backface-visibility hidden
+  will-change opacity
+
+.userlist-enter
+  opacity 0.01
+  &.userlist-enter-active
+    opacity 1
+    transition opacity .5s ease-in
+
+.userlist-leave
+  opacity 1
+  &.userlist-leave-active
+    opacity 0.01
+    transition opacity .5s ease-in
